@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuickFoodModel1StoreContainer" CdmEntityContainer="QuickFoodEntities1">
+    <EntitySetMapping Name="Favorites">
+      <EntityTypeMapping TypeName="QuickFoodModel1.Favorite">
+        <MappingFragment StoreEntitySet="Favorites">
+          <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="QuickFoodModel1.Food">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="IngredientsId" ColumnName="IngredientsId" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredients">
+      <EntityTypeMapping TypeName="QuickFoodModel1.Ingredient">
+        <MappingFragment StoreEntitySet="Ingredients">
+          <ScalarProperty Name="IngredientsId" ColumnName="IngredientsId" />
+          <ScalarProperty Name="IngredientsName" ColumnName="IngredientsName" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QuickFoodModel1.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_1">
+      <EntityTypeMapping TypeName="QuickFoodModel1.Table_1">
+        <MappingFragment StoreEntitySet="Table_1">
+          <ScalarProperty Name="IngredientsId" ColumnName="IngredientsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="QuickFoodModel1.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

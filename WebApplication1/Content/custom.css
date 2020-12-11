@@ -1,0 +1,34 @@
+﻿@charset "UTF-8";
+/* YOUR CUSTOM CSS */
+
+html{
+    overflow-x: hidden;
+}
+.ingredients{
+    list-style: none;
+}
+    .ingredients .item {
+        float: left;
+        display: inline;
+        text-decoration: none;
+        line-height: 20px;
+        font-size: 12px;
+        padding: 6px 9px;
+        margin: 5px;
+        border: 1px solid #da3d0d;
+        color: #fff;
+        background-color: #da3d0d;
+    }
+.ingredients .item:hover, .ingredients .item:hover .removeButton{
+    color: rgba(255, 255, 255, .7);
+}
+.removeButton {
+    outline: none;
+    color: #fff;
+    background-color: #da3d0d;
+    border: none;
+}
+
+.profile_link{
+    color: #333!important;
+}

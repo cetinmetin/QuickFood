@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuickFoodModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Favorites">
+    <Key>
+      <PropertyRef Name="FavoriteId" />
+    </Key>
+    <Property Name="FavoriteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FoodId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Foods">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IngredientsId" Type="int" />
+    <Property Name="Recipe" Type="text" />
+  </EntityType>
+  <EntityType Name="Ingredients">
+    <Key>
+      <PropertyRef Name="IngredientsId" />
+    </Key>
+    <Property Name="IngredientsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IngredientsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FoodId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Table_1">
+    <Key>
+      <PropertyRef Name="IngredientsId" />
+    </Key>
+    <Property Name="IngredientsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="FavoriteId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Favorites_Foods">
+    <End Role="Foods" Type="Self.Foods" Multiplicity="1" />
+    <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foods">
+        <PropertyRef Name="FoodId" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Favorites_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Foods_Ingredients">
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="0..1" />
+    <End Role="Foods" Type="Self.Foods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="IngredientsId" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="IngredientsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ingredients_Foods">
+    <End Role="Foods" Type="Self.Foods" Multiplicity="1" />
+    <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foods">
+        <PropertyRef Name="FoodId" />
+      </Principal>
+      <Dependent Role="Ingredients">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuickFoodModel1StoreContainer">
+    <EntitySet Name="Favorites" EntityType="Self.Favorites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Favorites_Foods" Association="Self.FK_Favorites_Foods">
+      <End Role="Foods" EntitySet="Foods" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Favorites_Users" Association="Self.FK_Favorites_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Foods_Ingredients" Association="Self.FK_Foods_Ingredients">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ingredients_Foods" Association="Self.FK_Ingredients_Foods">
+      <End Role="Foods" EntitySet="Foods" />
+      <End Role="Ingredients" EntitySet="Ingredients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
