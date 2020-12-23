@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuickFoodEntities1 : DbContext
+    public partial class QuickFoodEntities : DbContext
     {
-        public QuickFoodEntities1()
-            : base("name=QuickFoodEntities1")
+        public QuickFoodEntities()
+            : base("name=QuickFoodEntities")
         {
         }
     

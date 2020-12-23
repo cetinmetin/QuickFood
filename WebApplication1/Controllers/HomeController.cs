@@ -15,21 +15,24 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(FormCollection form){
+        public ActionResult Register(FormCollection form)
+        {
 
-            QuickFoodEntities1 db = new QuickFoodEntities1();
-            User model = new User();
+            using (QuickFoodEntities db = new QuickFoodEntities())
+            {
+                User model = new User();
+                model.UserName = form["userName"];
+                model.Password = form["password"];
+                model.FirstName = form["firstName"];
+                model.Surname = form["surname"];
+                model.Email = form["email"];
+                model.FavoriteId = 1;
 
-            model.UserName = form["userName"];
-            model.Password = form["password"];
-            model.FirstName = form["firstName"];
-            model.Surname = form["surname"];
-            model.Email = form["email"];
-            model.FavoriteId = 1;
+                db.Users.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index", "");
 
-            db.Users.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Index","");
+            }
         }
     }
 }
