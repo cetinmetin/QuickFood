@@ -23,12 +23,10 @@ namespace WebApplication1.Models
     
         public int FoodId { get; set; }
         public string FoodName { get; set; }
-        public Nullable<int> IngredientsId { get; set; }
         public string Recipe { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
-        public virtual Ingredient Ingredient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingredient> Ingredients { get; set; }
     }

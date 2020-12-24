@@ -135,37 +135,34 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Favorite.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ingredient.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFoodDB.Context.cs">
+    <Compile Include="Models\QuickFood.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFoodDB.Context.tt</DependentUpon>
+      <DependentUpon>QuickFood.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFoodDB.cs">
+    <Compile Include="Models\QuickFood.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFoodDB.Designer.cs">
+    <Compile Include="Models\QuickFood.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFoodDB.edmx</DependentUpon>
+      <DependentUpon>QuickFood.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Table_1.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>QuickFoodDB.tt</DependentUpon>
+      <DependentUpon>QuickFood.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -187,30 +184,30 @@
     <Content Include="Content\elegant_font\fonts\ElegantIcons.ttf" />
     <Content Include="Content\elegant_font\fonts\ElegantIcons.woff" />
     <Content Include="Content\fontello\font\fontello.woff" />
-    <EntityDeploy Include="Models\QuickFoodDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuickFoodDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="Images\search.svg" />
     <Content Include="Images\sub_header_home.jpg" />
     <Content Include="Images\thumb_restaurant_2.jpg" />
     <Content Include="Images\video_fix.png" />
-    <Content Include="Models\QuickFoodDB.edmx.diagram">
-      <DependentUpon>QuickFoodDB.edmx</DependentUpon>
+    <Content Include="Models\QuickFood.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickFood.edmx</DependentUpon>
+      <LastGenOutput>QuickFood.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuickFood.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickFood.edmx</DependentUpon>
+      <LastGenOutput>QuickFood.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\QuickFood.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuickFood.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuickFood.edmx.diagram">
+      <DependentUpon>QuickFood.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_mobile.png" />
-    <Content Include="Models\QuickFoodDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuickFoodDB.edmx</DependentUpon>
-      <LastGenOutput>QuickFoodDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\QuickFoodDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuickFoodDB.edmx</DependentUpon>
-      <LastGenOutput>QuickFoodDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\common_scripts_min.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\fontawesome_kit.js" />

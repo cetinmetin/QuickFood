@@ -14,18 +14,10 @@ namespace WebApplication1.Models
     
     public partial class Ingredient
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ingredient()
-        {
-            this.Foods = new HashSet<Food>();
-        }
+        public int IngredientId { get; set; }
+        public string IngredientName { get; set; }
+        public Nullable<int> FoodId { get; set; }
     
-        public int IngredientsId { get; set; }
-        public string IngredientsName { get; set; }
-        public int FoodId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Food> Foods { get; set; }
         public virtual Food Food { get; set; }
     }
 }

@@ -18,15 +18,14 @@ namespace WebApplication1.Controllers
         public ActionResult Register(FormCollection form)
         {
 
-            using (QuickFoodEntities db = new QuickFoodEntities())
+            using (QuickFoodEntities1 db = new QuickFoodEntities1())
             {
                 User model = new User();
-                model.UserName = form["userName"];
+                model.Username = form["userName"];
                 model.Password = form["password"];
                 model.FirstName = form["firstName"];
-                model.Surname = form["surname"];
-                model.Email = form["email"];
-                model.FavoriteId = 1;
+                model.SurName = form["surname"];
+                model.Mail = form["email"];
 
                 db.Users.Add(model);
                 db.SaveChanges();

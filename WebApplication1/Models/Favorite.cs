@@ -15,8 +15,8 @@ namespace WebApplication1.Models
     public partial class Favorite
     {
         public int FavoriteId { get; set; }
-        public int UserId { get; set; }
-        public int FoodId { get; set; }
+        public Nullable<int> FoodId { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual Food Food { get; set; }
         public virtual User User { get; set; }
