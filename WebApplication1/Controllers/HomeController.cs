@@ -11,27 +11,41 @@ namespace WebApplication1.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
             return View();
         }
 
         [HttpPost]
         public ActionResult Register(FormCollection form)
         {
-
-            using (QuickFoodEntities1 db = new QuickFoodEntities1())
+            if (UserExist(form["userName"]))
             {
-                User model = new User();
-                model.Username = form["userName"];
-                model.Password = form["password"];
-                model.FirstName = form["firstName"];
-                model.SurName = form["surname"];
-                model.Mail = form["email"];
-
-                db.Users.Add(model);
-                db.SaveChanges();
                 return RedirectToAction("Index", "");
+            }
+            else { 
+                using (QuickFoodEntities db = new QuickFoodEntities())
+                {
+                    User model = new User();
+                    model.Username = form["userName"];
+                
+                    model.Password = form["password"];
+                    model.FirstName = form["firstName"];
+                    model.SurName = form["surname"];
+                    model.Mail = form["email"];
 
+                    db.Users.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "");
+                }
             }
         }
+
+        public bool UserExist(string UserName)
+        {
+
+
+            return true;
+        }
+
     }
 }

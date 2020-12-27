@@ -24,6 +24,7 @@ namespace WebApplication1.Models
         public int FoodId { get; set; }
         public string FoodName { get; set; }
         public string Recipe { get; set; }
+        public Nullable<int> CategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }

@@ -131,38 +131,54 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchResultController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Favorite.cs">
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food.cs">
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetType_Result.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ingredient.cs">
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFood.Context.cs">
+    <Compile Include="Models\Nutrition.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuickFoodModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFood.Context.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFood.cs">
+    <Compile Include="Models\QuickFoodModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuickFood.Designer.cs">
+    <Compile Include="Models\QuickFoodModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickFood.edmx</DependentUpon>
+      <DependentUpon>QuickFoodModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>QuickFood.tt</DependentUpon>
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,26 +204,26 @@
     <Content Include="Images\sub_header_home.jpg" />
     <Content Include="Images\thumb_restaurant_2.jpg" />
     <Content Include="Images\video_fix.png" />
-    <Content Include="Models\QuickFood.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuickFood.edmx</DependentUpon>
-      <LastGenOutput>QuickFood.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\QuickFood.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuickFood.edmx</DependentUpon>
-      <LastGenOutput>QuickFood.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\QuickFood.edmx">
+    <EntityDeploy Include="Models\QuickFoodModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuickFood.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuickFoodModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QuickFood.edmx.diagram">
-      <DependentUpon>QuickFood.edmx</DependentUpon>
+    <Content Include="Models\QuickFoodModel.edmx.diagram">
+      <DependentUpon>QuickFoodModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_mobile.png" />
+    <Content Include="Models\QuickFoodModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickFoodModel.edmx</DependentUpon>
+      <LastGenOutput>QuickFoodModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuickFoodModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuickFoodModel.edmx</DependentUpon>
+      <LastGenOutput>QuickFoodModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\common_scripts_min.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\fontawesome_kit.js" />
@@ -582,6 +598,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
