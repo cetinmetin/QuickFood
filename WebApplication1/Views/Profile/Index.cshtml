@@ -1,8 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
 
 
 <!-- SubHeader =============================================== -->
@@ -48,19 +46,24 @@
                             <div class="col-md-12 border-right">
                                 <div class="py-3">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="text-right">@ViewBag.isUpdateUser
-                                        @ViewBag.UpdateUserMessage</h4>
+                                        <h4 class="text-right">
+
+                                          
+
+                                        </h4>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="enter email id" disabled value="@Session["Username"].ToString()"></div>
-                                    </div>
-                                    <form action="/User/UpdateProfile" method="post">
+                                    
+                                    <form action="/User/UpdateProfile/" method="post">
+                                        <div class="row mt-3">
+                                            <div class="col-md-6"><label class="labels">Id</label><input type="text" class="form-control" name="userId" readonly value="@ViewBag.isUser.UserId"></div>
+                                            <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" readonly value="@ViewBag.isUser.Username"></div>
+                                        </div>
                                         <div class="row mt-2">
-                                            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" name="firstName" value="@Session["FirstName"].ToString()"></div>
-                                            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" placeholder="surname" name="surName" value="@Session["SurName"].ToString()"></div>
+                                            <div class="col-md-6"><label class="labels">Name </label><input type="text" class="form-control" placeholder="first name" name="firstName" value="@ViewBag.isUser.FirstName"></div>
+                                            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" placeholder="surname" name="surName" value="@ViewBag.isUser.SurName"></div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" name="mail" value="@Session["Mail"].ToString()"></div>
+                                            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" name="mail" value="@ViewBag.isUser.Mail"></div>
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" placeholder="New Password" name="newPassword" value="" minlength="6"></div>
@@ -82,5 +85,4 @@
         </div><!-- End col-md-9-->
 
     </div><!-- End row -->
-</div><!-- End container -->
 <!-- End Content =============================================== -->

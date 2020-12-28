@@ -69,15 +69,10 @@
     </li> -->
                             <li><a href="about.html">About us</a></li>
                             <li><a href="faq.html">Faq</a></li>
-                            @if (Request.Cookies["username"].Value != null)
+                            @if (HttpContext.Current.User.Identity.Name != "")
                             {
-                                <li><a href="/Profile/">@Request.Cookies["username"].Value</a></li>
+                                <li><a href="/Profile/">@HttpContext.Current.User.Identity.Name </a></li>
                                 <li><a href="/User/Logout">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
-                                <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
                             }
                         </ul>
                     </div><!-- End main-menu -->

@@ -6,14 +6,15 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         // GET: Profile
+        QuickFoodEntities db = new QuickFoodEntities();
         public ActionResult Index()
         {
-            ViewBag.isUpdateUser = TempData["isUserUpdate"];
-            ViewBag.UpdateUserMessage = TempData["UpdateUserMessage"];
-            return View();
+            ViewBag.isUser = db.Users.FirstOrDefault(x => x.Username ==  HttpContext.User.Identity.Name);
+            return View();   
         }
         
     }
