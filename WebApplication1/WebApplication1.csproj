@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FoodDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchResultController.cs" />
@@ -614,6 +615,7 @@
     <Content Include="Vendors\ckEditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Vendors\ckEditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Vendors\ckEditor\skins\moono-lisa\readme.md" />
+    <Content Include="Views\FoodDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

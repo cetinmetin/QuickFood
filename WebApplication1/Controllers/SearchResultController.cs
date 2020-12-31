@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         // GET: SearchResult
         public ActionResult Index()
         {
+            ViewBag.Foods = TempData["Foods"];
             return View();
         }
         public ActionResult GetFoods(FormCollection form)
@@ -35,6 +36,7 @@ namespace WebApplication1.Controllers
                     _Ingredients.Add(Db.Database.SqlQuery<Int32>(query).FirstOrDefault());
                 }
             }
+            var i = 0;
             foreach (int ingredientId in _Ingredients)
             {
                 foodId = Db.Database.SqlQuery<Int32>("SELECT FoodId FROM Ingredients where IngredientId=" + "'" + ingredientId + "'").FirstOrDefault();
@@ -42,7 +44,9 @@ namespace WebApplication1.Controllers
                 foodName = Db.Database.SqlQuery<string>("SELECT FoodName FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
                 recipe = Db.Database.SqlQuery<string>("SELECT Recipe FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
                 var food = new Food { FoodId = Convert.ToInt32(foodId), CategoryId = Convert.ToInt32(categoryId), FoodName = foodName, Recipe = recipe };
-                if (_Food.Contains(food))
+
+                var match = _Food.FirstOrDefault(stringToCheck => stringToCheck.FoodName.Contains(food.FoodName));
+                if (match != null)
                 {
                     continue;
                 }
@@ -51,7 +55,7 @@ namespace WebApplication1.Controllers
                     _Food.Add(food);
                 }
             }
-            ViewBag.value = _Food[0].FoodName.ToString();
+            TempData["Foods"] = _Food;
             return RedirectToAction("Index", "SearchResult");
         }
     }
