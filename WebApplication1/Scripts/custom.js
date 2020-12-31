@@ -8,15 +8,19 @@ class item {
         this.createDiv(itemName)
     }
     createDiv(itemName) {
-        let input = document.createElement('span')
-        input.innerHTML = itemName
-        // input.disabled = false
+        let input = document.createElement('input')
+        //input.innerHTML = itemName
+        input.disabled = false
+        input.readOnly = true
         input.classList.add('item_input')
-        // input.type = "text"
+        input.type = "text"
+        input.value = itemName
+        input.name = itemName
         includeIngredients.push(itemName)
         let itemBox = document.createElement('li')
+        //itemBox.innerHTML = "<input type='text' name=" + itemName +">"
         itemBox.classList.add('item')
-
+       // itemBox.value=itemName
         let removeButton = document.createElement('button')
         removeButton.innerHTML = "<i class='fa fa-times'></i>"
         removeButton.classList.add('removeButton')
@@ -45,7 +49,7 @@ function check() {
     }
 }
 
-addButton.addEventListener('click', check)
+addButton.addEventListener('click', (e) => { e.preventDefault(); check() })
 
 window.addEventListener('keydown', (e) => {
     if (e.which == 13) {

@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
                 model.Mail = email;
                 db.Users.Add(model);
                 db.SaveChanges();
-                MailSender(firstName, email);
+                //MailSender(firstName, email);
                 FormsAuthentication.SetAuthCookie(userName, false);
                 return RedirectToAction("Index", "Home");     
             }

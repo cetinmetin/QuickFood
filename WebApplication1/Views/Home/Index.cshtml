@@ -7,16 +7,18 @@
             </p>
             <div id="custom-search-input">
                 <div class="input-group">
-
-                    <input type="text" class="search-query" placeholder="Ingredients you have">
-                    <span class="input-group-btn">
-                        <button class="btn_search" type="submit" id="add_ingredients" style="margin-right:30px; background-color: transparent; ">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                        <input type="submit" name="search_food" value="" style="background: url(../Images/search.svg) no-repeat center right;" class="btn_search" />
-                    </span>
-                    <ul class="ingredients">
-                    </ul>
+                    <form action="SearchResult/GetFoods" method="post">
+                        <input type="text" class="search-query" placeholder="Ingredients you have" name="ingredient">
+                        <p>@ViewBag.IngredientFail</p>
+                        <span class="input-group-btn">
+                            <button class="btn_search" type="submit" id="add_ingredients" style="margin-right:30px; background-color: transparent; ">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <input type="submit" name="search_food" value="" style="background: url(../Images/search.svg) no-repeat center right;" class="btn_search" />
+                        </span>
+                        <ul class="ingredients">
+                        </ul>
+                    </form>
                 </div>
             </div>
         </div><!-- End sub_content -->
