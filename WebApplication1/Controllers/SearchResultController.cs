@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Newtonsoft.Json;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,45 +11,60 @@ namespace WebApplication1.Controllers
 {
     public class SearchResultController : Controller
     {
-        List<int> _Ingredients = new List<int>();
-        QuickFoodEntities Db = new QuickFoodEntities();
+        List<int> _IDsOfIngredients = new List<int>();
+        List<string> _SearchedIngredients = new List<string>();
+        QuickFoodEntities _Db = new QuickFoodEntities();
         List<Food> _Food = new List<Food>();
+        List<string> _CategoryNames = new List<string>();
+        List<string> _IngredientNames = new List<string>();
 
         // GET: SearchResult
         public ActionResult Index()
         {
-            if(TempData["Foods"] != null)
+            if (TempData["Foods"] != null)
             {
                 ViewBag.Foods = TempData["Foods"];
+                ViewBag.IngredientError = TempData["IngredientError"];
                 return View();
             }
             return RedirectToAction("Index", "Home");
         }
         public ActionResult GetFoods(FormCollection form)
         {
-            string foodName, recipe;
+            string foodName, recipe, categoryName;
             int foodId, categoryId;
             for (int counter = 2; counter < form.Count; counter++)
             {
                 var query = "SELECT IngredientId FROM Ingredients where IngredientName =" + "'" + form[counter] + "'";
-                if (_Ingredients.Contains(Db.Database.SqlQuery<Int32>(query).FirstOrDefault()))
+                var tempIngredientId = _Db.Database.SqlQuery<Int32>(query).FirstOrDefault();
+                bool isInList = _IDsOfIngredients.IndexOf(tempIngredientId) != -1;
+                if (isInList != false || tempIngredientId == 0)
                 {
-                    TempData["IngredientFail"] = "Bu malzemeyi zaten seçtiniz";
+                    continue;
+                }
+                else
+                {
+                    _IDsOfIngredients.Add(tempIngredientId);
+                }
+                /*if (_Ingredients.Contains(Db.Database.SqlQuery<Int32>(query).FirstOrDefault()))
+                {
+                    continue;
                 }
                 else
                 {
                     _Ingredients.Add(Db.Database.SqlQuery<Int32>(query).FirstOrDefault());
-                }
+                }*/
             }
-            var i = 0;
-            foreach (int ingredientId in _Ingredients)
+            foreach (int ingredientId in _IDsOfIngredients)
             {
-                foodId = Db.Database.SqlQuery<Int32>("SELECT FoodId FROM Ingredients where IngredientId=" + "'" + ingredientId + "'").FirstOrDefault();
-                categoryId = Db.Database.SqlQuery<Int32>("SELECT CategoryId FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
-                foodName = Db.Database.SqlQuery<string>("SELECT FoodName FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
-                recipe = Db.Database.SqlQuery<string>("SELECT Recipe FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
-                var food = new Food { FoodId = Convert.ToInt32(foodId), CategoryId = Convert.ToInt32(categoryId), FoodName = foodName, Recipe = recipe };
-
+                foodId = _Db.Database.SqlQuery<Int32>("SELECT FoodId FROM Ingredients where IngredientId=" + "'" + ingredientId + "'").FirstOrDefault();
+                categoryId = _Db.Database.SqlQuery<Int32>("SELECT CategoryId FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
+                categoryName = _Db.Database.SqlQuery<string>("SELECT CategoryName from Categories where CategoryId =" + "'" + categoryId + "'").FirstOrDefault();
+                foodName = _Db.Database.SqlQuery<string>("SELECT FoodName FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
+                recipe = _Db.Database.SqlQuery<string>("SELECT Recipe FROM Foods where FoodId=" + "'" + foodId + "'").FirstOrDefault();
+                var food = new Food { FoodId = Convert.ToInt32(foodId), CategoryName = categoryName, CategoryId = Convert.ToInt32(categoryId), FoodName = foodName, Recipe = recipe };
+                var ingredients = _Db.Database.SqlQuery<string>("SELECT IngredientName from Ingredients where FoodId=" + "'" + foodId + "'").ToList();
+                food.Ingredients.Add(JsonConvert.SerializeObject(ingredients));
                 var match = _Food.FirstOrDefault(stringToCheck => stringToCheck.FoodName.Contains(food.FoodName));
                 if (match != null)
                 {
@@ -60,13 +76,19 @@ namespace WebApplication1.Controllers
                 }
             }
             TempData["Foods"] = _Food;
-            return RedirectToAction("Index", "SearchResult");
+            if (_Food.Any())
+                return RedirectToAction("Index", "SearchResult");
+            else
+            {
+                TempData["IngredientError"] = "Lütfen Malzeme Seçimi Yapın";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult GetFoodsAsCategory(int id)
         {
-            var CategoryFoods = Db.Database.SqlQuery<Food>("SELECT * FROM Foods F INNER JOIN Categories C ON C.CategoryId = F.CategoryId WHERE F.CategoryId =" + id).ToList();
-            TempData["Foods"] = CategoryFoods; 
+            var CategoryFoods = _Db.Database.SqlQuery<Food>("SELECT * FROM Foods F INNER JOIN Categories C ON C.CategoryId = F.CategoryId WHERE F.CategoryId =" + id).ToList();
+            TempData["Foods"] = CategoryFoods;
             return RedirectToAction("Index", "SearchResult");
         }
 

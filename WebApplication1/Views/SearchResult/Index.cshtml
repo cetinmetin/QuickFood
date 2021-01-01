@@ -53,10 +53,8 @@
                     </div>
                 </div>
             </div><!--End tools -->
-
             @foreach (var food in ViewBag.Foods)
             {
-
                 <div class="strip_list wow fadeIn" data-wow-delay="0.1s">
 
                     <div class="row">
@@ -66,19 +64,17 @@
                                     <a href="detail_page.html"><img src="~/Images/thumb_restaurant_2.jpg" alt=""></a>
                                 </div>
                                 <h3>@food.FoodName <i class="fa fa-heart"></i></h3>
-                                <div class="type">
-                                    @food.CategoryId
+                                <div class="category">
+                                    @food.CategoryName
                                 </div>
                                 <div class="location">
                                     @food.Recipe
-
                                 </div>
                                 <ul>
-                                    <li>Rice<i class="icon_check_alt2 ok"></i></li>
-                                    <li>Salmon<i class="icon_check_alt2 ok"></i></li>
-                                    <li>Garlic<i class="icon_check_alt2 ok"></i></li>
-                                    <li>Onion<i class="icon_check_alt2 no"></i></li>
-                                    <li>Pasta<i class="icon_check_alt2 no"></i></li>
+                                    @foreach (var ingredient in food.Ingredients)
+                                    {
+                                        <li>@ingredient<i class="icon_check_alt2 ok"></i></li>
+                                    }
                                 </ul>
                             </div>
                         </div>
