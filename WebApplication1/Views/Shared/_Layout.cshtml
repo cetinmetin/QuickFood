@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using WebApplication1.Models;
+@{ 
+    QuickFoodEntities db = new QuickFoodEntities();
+    var categories = db.Categories.ToList();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,10 +56,12 @@
                             <li class="submenu">
                                 <a href="javascript:void(0);" class="show-submenu">Food Categories<i class="icon-down-open-mini"></i></a>
                                 <ul>
-                                    <li><a href="list_page.html">Desserts</a></li>
-                                    <li><a href="grid_list.html">Iced Coffees</a></li>
-                                    <li><a href="map_listing.html">Hot Coffees</a></li>
-                                    <li><a href="detail_page.html">Fast Foods</a></li>
+                                    @{
+                                        foreach (var category in categories)
+                                        {
+                                            <li><a href="SearchResult/GetFoodsAsCategory/@category.CategoryId">@category.CategoryName</a></li>
+                                        }
+                                    }
                                 </ul>
                             </li>
                             <li><a href="about.html">About us</a></li>

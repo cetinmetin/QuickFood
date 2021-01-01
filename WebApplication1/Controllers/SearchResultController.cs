@@ -17,8 +17,12 @@ namespace WebApplication1.Controllers
         // GET: SearchResult
         public ActionResult Index()
         {
-            ViewBag.Foods = TempData["Foods"];
-            return View();
+            if(TempData["Foods"] != null)
+            {
+                ViewBag.Foods = TempData["Foods"];
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult GetFoods(FormCollection form)
         {
@@ -58,5 +62,13 @@ namespace WebApplication1.Controllers
             TempData["Foods"] = _Food;
             return RedirectToAction("Index", "SearchResult");
         }
+
+        public ActionResult GetFoodsAsCategory(int id)
+        {
+            var CategoryFoods = Db.Database.SqlQuery<Food>("SELECT * FROM Foods F INNER JOIN Categories C ON C.CategoryId = F.CategoryId WHERE F.CategoryId =" + id).ToList();
+            TempData["Foods"] = CategoryFoods; 
+            return RedirectToAction("Index", "SearchResult");
+        }
+
     }
 }
