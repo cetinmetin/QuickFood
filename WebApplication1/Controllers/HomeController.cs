@@ -12,6 +12,7 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             ViewBag.RegisterFail = TempData["RegisterFail"];
+            ViewBag.IngredientError = TempData["IngredientError"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
             return View();
         }
