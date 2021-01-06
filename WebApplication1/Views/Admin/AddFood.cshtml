@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "AddFood";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <form action="/Admin/AddFood" method="post">
+                    <h4 class="card-title">Add Food</h4>
+                    <p class="card-title-desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate placeat doloribus laborum dolorum minus tenetur, aperiam rem veniam esse, magni, temporibus eveniet molestias aliquam aspernatur ad? Cum, excepturi officiis! Necessitatibus.
+                    </p>
+                    <div class="form-group row">
+                        <label for="foodName" class="col-sm-2 col-form-label">Food Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" value="" id="foodName" name="foodName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Recipe" class="col-sm-2 col-form-label">Recipe</label>
+                        <div class="col-sm-10">
+                            <textarea required class="form-control" rows="5" name="recipe" id="recipe"></textarea>
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <p class="col-form-label col-sm-2 pt-0">Categories</p>
+                            <div class="col-sm-10">
+                                @foreach (var category in ViewBag.Categories)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="category" id="category" value="@category.CategoryId">
+                                        <label class="form-check-label" for="@category.CategoryId">
+                                            @category.CategoryName
+                                        </label>
+                                    </div>
+                                }
+                                
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group row">
+                        <div class="col-sm-2">Ingredients</div>
+                        <div class="col-sm-10">
+                            @foreach (var ingredient in ViewBag.Ingredients)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="@ingredient" name="ingredient" value="@ingredient">
+                                    <label class="form-check-label" for="@ingredient">
+                                        @ingredient
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @foreach (var nutrition in ViewBag.Nutritions)
+                    {
+                        <div class="form-group row">
+                            <label for="@nutrition" class="col-sm-2 col-form-label">@nutrition</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="number" id="@nutrition" name="nutrition">
+                            </div>
+                        </div>
+                    }
+
+                    <div class="mt-5 text-center"><button class="btn profile-button" style="background-color: #626ed4; color:#FFF" type="submit">Add Food</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>

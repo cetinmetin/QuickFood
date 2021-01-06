@@ -66,6 +66,21 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="SurName" Type="varchar" MaxLength="50" />
           <Property Name="Mail" Type="varchar" MaxLength="150" />
+          <Property Name="State" Type="tinyint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QuickFood.dbo.GetFavorites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetFavorites">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FavoriteId" />
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FavoriteId" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="FoodName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -111,7 +126,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="type" Type="nvarchar" Mode="In" />
+          <Parameter Name="type" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -157,6 +172,15 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <EntitySet Name="Nutritions" EntityType="Self.Nutritions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GetFavorites" EntityType="Self.GetFavorites" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetFavorites].[UserId] AS [UserId], 
+    [GetFavorites].[FavoriteId] AS [FavoriteId], 
+    [GetFavorites].[FoodId] AS [FoodId], 
+    [GetFavorites].[FirstName] AS [FirstName], 
+    [GetFavorites].[FoodName] AS [FoodName]
+    FROM [dbo].[GetFavorites] AS [GetFavorites]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Favorites_Foods" Association="Self.FK_Favorites_Foods">
             <End Role="Foods" EntitySet="Foods" />
             <End Role="Favorites" EntitySet="Favorites" />
@@ -241,6 +265,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Favorites" Relationship="Self.FK_Favorites_Users" FromRole="Users" ToRole="Favorites" />
+          <Property Name="State" Type="Byte" />
         </EntityType>
         <Association Name="FK_Favorites_Foods">
           <End Role="Foods" Type="Self.Food" Multiplicity="0..1" />
@@ -299,7 +324,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
           <FunctionImport Name="GetType" ReturnType="Collection(QuickFoodModel.GetType_Result)">
-          <Parameter Name="type" Mode="In" Type="String" />
+          <Parameter Name="type" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -337,6 +362,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
             <Parameter Name="surName" Mode="In" Type="String" />
             <Parameter Name="mail" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="GetFavorites" EntityType="QuickFoodModel.GetFavorite" />
         </EntityContainer>
         <ComplexType Name="GetType_Result">
           <Property Type="Int32" Name="FoodId" Nullable="false" />
@@ -357,6 +383,18 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="GetFavorite">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FavoriteId" />
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FavoriteId" Type="Int32" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -423,6 +461,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuickFoodModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -469,6 +508,17 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QuickFoodModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QuickFoodModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="QuickFoodModel.Store.UpdateUser" />
+          <EntitySetMapping Name="GetFavorites">
+            <EntityTypeMapping TypeName="QuickFoodModel.GetFavorite">
+              <MappingFragment StoreEntitySet="GetFavorites">
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

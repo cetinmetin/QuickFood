@@ -61,6 +61,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuickFoodModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="State" ColumnName="State" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -107,5 +108,16 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QuickFoodModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QuickFoodModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="QuickFoodModel.Store.UpdateUser" />
+    <EntitySetMapping Name="GetFavorites">
+      <EntityTypeMapping TypeName="QuickFoodModel.GetFavorite">
+        <MappingFragment StoreEntitySet="GetFavorites">
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

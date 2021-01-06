@@ -147,6 +147,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FoodDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -162,6 +163,9 @@
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetFavorite.cs">
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetType_Result.cs">
@@ -204,10 +208,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\app-dark.min.css" />
+    <Content Include="Content\app-rtl.min.css" />
+    <Content Include="Content\app.min.css" />
+    <Content Include="Content\bootstrap-dark.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\elegant_font\elegant_font.min.css" />
     <Content Include="Content\fontello\css\fontello.min.css" />
+    <Content Include="Content\icons.min.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\pop_up.css" />
@@ -215,6 +224,7 @@
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\themify9f24.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\elegant_font\fonts\ElegantIcons.ttf" />
@@ -231,6 +241,15 @@
     <Content Include="Models\QuickFoodModel.edmx.diagram">
       <DependentUpon>QuickFoodModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\materialdesignicons-webfont2f9b.ttf" />
+    <Content Include="fonts\materialdesignicons-webfont2f9b.eot" />
+    <Content Include="fonts\materialdesignicons-webfont2f9b.woff" />
+    <Content Include="fonts\materialdesignicons-webfont2f9b.woff2" />
+    <Content Include="fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="fonts\themify9f24.eot" />
+    <Content Include="fonts\themify9f24.ttf" />
+    <Content Include="fonts\themify9f24.woff" />
+    <Content Include="fonts\themifyd41d.eot" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_mobile.png" />
@@ -616,6 +635,15 @@
     <Content Include="Vendors\ckEditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Vendors\ckEditor\skins\moono-lisa\readme.md" />
     <Content Include="Views\FoodDetail\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\AddFood.cshtml" />
+    <Content Include="Views\Admin\CategoryList.cshtml" />
+    <Content Include="Views\Admin\AddIngredients.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\ListFood.cshtml" />
+    <Content Include="Views\Admin\CreateAdminUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

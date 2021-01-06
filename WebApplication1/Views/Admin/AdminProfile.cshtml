@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Profile</h4>
+                <p class="card-title-desc">
+                    @ViewBag.UpdateUserMessage
+                </p>
+                <form action="/Admin/AdminProfile" method="post">
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Id</label><input type="text" class="form-control" name="userId" readonly value="@ViewBag.isUser.UserId"></div>
+                        <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" readonly value="@ViewBag.isUser.Username"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name </label><input type="text" class="form-control" placeholder="first name" name="firstName" value="@ViewBag.isUser.FirstName"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" placeholder="surname" name="surName" value="@ViewBag.isUser.SurName"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" name="mail" value="@ViewBag.isUser.Mail"></div>
+                    </div>
+
+                    <div class="mt-5 text-center"><button class="btn profile-button" style="background-color: #626ed4; color:#FFF" type="submit">Save Profile</button></div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->

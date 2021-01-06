@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>
+        Dashboard | QuickFood Admin Panel
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <link rel="shortcut icon" href="public/assets/images/favicon.ico" />
+
+    <!-- DataTables -->
+    <link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/icons.min.css")
+    @Styles.Render("~/Content/app.min.css")
+    @Styles.Render("~/Public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css")
+    @Styles.Render("~/Public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css")
+    @Styles.Render("~/Public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css")
+    
+</head>
+
+<body data-sidebar="dark">
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+
+                        <a href="Admin/Index" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="~/Images/logo_mobile.png" alt="" height="10">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Images/logo.png" alt="" height="18">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+
+
+                </div>
+
+                <div class="d-flex">
+                    <!-- App Search-->
+
+
+                    <div class="dropdown d-inline-block d-lg-none ml-2">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
+                             aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                               aria-label="Recipient's username">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="mdi mdi-magnify"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <div class="dropdown d-none d-lg-inline-block">
+                        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                            <i class="mdi mdi-fullscreen"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="~/Public/assets/images/users/user.png"
+                                 alt="Header Avatar">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a class="dropdown-item" href="~/Admin/AdminProfile">
+                                <i class="mdi mdi-account-circle font-size-17 align-middle mr-1"></i> Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="~/Admin/Logout">
+                                <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </header>
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="~/Admin/Index" class="waves-effect">
+                                <i class="ti-home"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/Admin/AddFood" class=" waves-effect">
+                                <i class="ti-calendar"></i>
+                                <span>Add Food</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/ListFood" class=" waves-effect">
+                                <i class="ti-calendar"></i>
+                                <span>List Food</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/AddIngredients" class=" waves-effect">
+                                <i class="ti-calendar"></i>
+                                <span>Ingredients</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/Admin/CategoryList" class=" waves-effect">
+                                <i class="ti-calendar"></i>
+                                <span>Category</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Admin/CreateAdminUser" class=" waves-effect">
+                                <i class="ti-calendar"></i>
+                                <span>Create Admin User</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+
+                            <div class="page-title-box">
+                                
+                                <ol class="breadcrumb mb-0">
+                                    
+                                </ol>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    @RenderBody()
+
+
+
+                    <footer class="footer" >
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    © 2021 Veltrix<span class="d-none d-sm-inline-block">
+                                        - Crafted with <i class="mdi mdi-heart text-danger"></i> by
+                                        Themesbrand.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <!-- Right Sidebar -->
+            <!-- /Right-bar -->
+            <!-- Right bar overlay-->
+            <div class="rightbar-overlay"></div>
+
+
+            @Scripts.Render("~/Public/assets/libs/jquery/jquery.min.js")
+            @Scripts.Render("~/Public/assets/libs/bootstrap/js/bootstrap.bundle.min.js")
+            @Scripts.Render("~/Public/assets/libs/metismenu/metisMenu.min.js")
+            @Scripts.Render("~/Public/assets/libs/simplebar/simplebar.min.js")
+            @Scripts.Render("~/Public/assets/libs/node-waves/waves.min.js")
+            @Scripts.Render("~/Public/assets/libs/peity/jquery.peity.min.js")
+            @Scripts.Render("~/Public/assets/libs/chartist/chartist.min.js")
+            @Scripts.Render("~/Public/assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js")
+            @Scripts.Render("~/Public/assets/js/pages/dashboard.init.js")
+            @Scripts.Render("~/Public/assets/js/app.js")
+            @Scripts.Render("~/Vendors/cKEditor/ckeditor.js")
+
+            <!-- Required datatable js -->
+            <script src="~/Public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <!-- Buttons examples -->
+            <script src="~/Public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="~/Public/assets/libs/jszip/jszip.min.js"></script>
+            <script src="~/Public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+            <script src="~/Public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+            <!-- Responsive examples -->
+            <script src="~/Public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="~/Public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+            <!-- Datatable init js -->
+            <script src="~/Public/assets/js/pages/datatables.init.js"></script>
+            <script>
+                CKEDITOR.replace('recipe');
+            </script>
+
+            <!-- nothing -->
+</body>
+
+
+<!-- Mirrored from veltrix-light-v.node.themesbrand.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Jan 2021 06:18:53 GMT -->
+</html>

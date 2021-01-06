@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Profile</h4>
+                <p class="card-title-desc">
+                    @ViewBag.RegisterFail
+                </p>
+                <form action="/Admin/CreateAdminUser" method="post">
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" name="userName" value="" required ></div>
+                        <div class="col-md-6"><label class="labels">Password</label><input type="password" class="form-control" name="password" value="" required></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name </label><input type="text" class="form-control" placeholder="First Name" name="firstName" value="" required></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" placeholder="Surname" name="surName" value="" required></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="email" class="form-control" placeholder="enter email id" name="email" value="" required></div>
+                    </div>
+
+                    <div class="mt-5 text-center"><button class="btn profile-button" style="background-color: #626ed4; color:#FFF" type="submit">Save User</button></div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->

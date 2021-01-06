@@ -61,6 +61,21 @@
     <Property Name="FirstName" Type="varchar" MaxLength="50" />
     <Property Name="SurName" Type="varchar" MaxLength="50" />
     <Property Name="Mail" Type="varchar" MaxLength="150" />
+    <Property Name="State" Type="tinyint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuickFood.dbo.GetFavorites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetFavorites">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="FavoriteId" />
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FavoriteId" Type="int" Nullable="false" />
+    <Property Name="FoodId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="FoodName" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -106,7 +121,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="GetType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="type" Type="nvarchar" Mode="In" />
+    <Parameter Name="type" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -152,6 +167,15 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
     <EntitySet Name="Nutritions" EntityType="Self.Nutritions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GetFavorites" EntityType="Self.GetFavorites" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetFavorites].[UserId] AS [UserId], 
+    [GetFavorites].[FavoriteId] AS [FavoriteId], 
+    [GetFavorites].[FoodId] AS [FoodId], 
+    [GetFavorites].[FirstName] AS [FirstName], 
+    [GetFavorites].[FoodName] AS [FoodName]
+    FROM [dbo].[GetFavorites] AS [GetFavorites]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Favorites_Foods" Association="Self.FK_Favorites_Foods">
       <End Role="Foods" EntitySet="Foods" />
       <End Role="Favorites" EntitySet="Favorites" />

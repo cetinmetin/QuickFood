@@ -18,7 +18,7 @@ namespace WebApplication1.Models
         public Food()
         {
             this.Favorites = new HashSet<Favorite>();
-            this.Ingredients = new List<string>();
+            this.Ingredients = new HashSet<Ingredient>();
         }
     
         public int FoodId { get; set; }
@@ -29,7 +29,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual List<string> Ingredients { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
         public virtual string CategoryName { get; set; }
     }
 }

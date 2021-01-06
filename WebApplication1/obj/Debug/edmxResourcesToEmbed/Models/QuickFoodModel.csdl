@@ -67,6 +67,7 @@
     <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Favorites" Relationship="Self.FK_Favorites_Users" FromRole="Users" ToRole="Favorites" />
+    <Property Name="State" Type="Byte" />
   </EntityType>
   <Association Name="FK_Favorites_Foods">
     <End Role="Foods" Type="Self.Food" Multiplicity="0..1" />
@@ -125,7 +126,7 @@
       <End Role="Ingredients" EntitySet="Ingredients" />
     </AssociationSet>
     <FunctionImport Name="GetType" ReturnType="Collection(QuickFoodModel.GetType_Result)">
-      <Parameter Name="type" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -163,6 +164,7 @@
       <Parameter Name="surName" Mode="In" Type="String" />
       <Parameter Name="mail" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="GetFavorites" EntityType="QuickFoodModel.GetFavorite" />
   </EntityContainer>
   <ComplexType Name="GetType_Result">
     <Property Type="Int32" Name="FoodId" Nullable="false" />
@@ -183,4 +185,16 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="GetFavorite">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="FavoriteId" />
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="FavoriteId" Type="Int32" Nullable="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

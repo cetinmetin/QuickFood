@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
         // GET: User
         QuickFoodEntities db = new QuickFoodEntities();
 
-        public ActionResult Register(string userName, string password, string firstName, string surName, string email)
+        public ActionResult Register(string userName, string password, string firstName, string surName, string email, byte state = 0)
         {
             var isUser = db.Users.FirstOrDefault(x => x.Username == userName);
             if (isUser != null)
@@ -33,6 +33,7 @@ namespace WebApplication1.Controllers
                 model.FirstName = firstName;
                 model.SurName = surName;
                 model.Mail = email;
+                model.State = state;
                 db.Users.Add(model);
                 db.SaveChanges();
                 //MailSender(firstName, email);

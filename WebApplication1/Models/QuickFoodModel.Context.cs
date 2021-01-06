@@ -34,12 +34,13 @@ namespace WebApplication1.Models
         public virtual DbSet<Nutrition> Nutritions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<GetFavorite> GetFavorites { get; set; }
     
-        public virtual ObjectResult<GetType_Result> GetType(string type)
+        public virtual ObjectResult<GetType_Result> GetType(Nullable<int> type)
         {
-            var typeParameter = type != null ?
+            var typeParameter = type.HasValue ?
                 new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(string));
+                new ObjectParameter("type", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetType_Result>("GetType", typeParameter);
         }

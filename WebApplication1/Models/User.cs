@@ -26,6 +26,7 @@ namespace WebApplication1.Models
         public string FirstName { get; set; }
         public string SurName { get; set; }
         public string Mail { get; set; }
+        public Nullable<byte> State { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorites { get; set; }
