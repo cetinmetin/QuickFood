@@ -165,6 +165,7 @@
     <Compile Include="Models\Food.cs">
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FoodCount.cs" />
     <Compile Include="Models\GetFavorite.cs">
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>

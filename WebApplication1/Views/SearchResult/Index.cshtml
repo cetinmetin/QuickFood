@@ -33,9 +33,13 @@
                     <div class="filter_type">
                         <h6>Ingredients</h6>
                         <ul>
-                            @foreach (var ingredient in ViewBag.SearchedIngredients)
-                            {
-                                <li>@ingredient.ToUpper()</li>
+                            @{ 
+                                if(ViewBag.SearchIngredients != null) { 
+                                    foreach (var ingredient in ViewBag.SearchedIngredients)
+                                    {
+                                        <li>@ingredient.ToUpper()</li>
+                                    }
+                               }
                             }
                         </ul>
                     </div>
@@ -70,7 +74,14 @@
                                 </div>
                                 <h3>@food.FoodName <i class="fa fa-heart"></i></h3>
                                 <div class="category">
-                                    @food.CategoryName
+                                    
+                                    @{
+                                        var categories =  db.Categories.SqlQuery("SELECT * FROM Categories WHERE CategoryId = '" + food.CategoryId +"'");
+                                        foreach(var category in categories)
+                                        {
+                                            <p>@category.CategoryName</p>;
+                                        }
+                                    }
                                 </div>
                                 <br />
                                 <ul>
