@@ -1,4 +1,9 @@
-﻿@{
+﻿@using WebApplication1.Models
+@{ 
+    QuickFoodEntities db = new QuickFoodEntities();
+    var a = 0;
+}
+@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -9,7 +14,31 @@
             <div><em>@ViewBag.Category[0].CategoryName</em></div>
             <div>
                 <i class="icon_pin"></i>
-               
+                @if (HttpContext.Current.User.Identity.Name != "")
+                {
+
+                    var user = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Username=" + "'" + HttpContext.Current.User.Identity.Name + "'").FirstOrDefault();
+                    var favorites = db.Database.SqlQuery<Favorite>("SELECT * FROM Favorites").ToList();
+                    foreach (var favorite in favorites)
+                    {
+                        if (favorite.FoodId == ViewBag.Foods[0].FoodId && favorite.UserId == user.UserId)
+                        {
+                            <div>
+                                <a href="~/User/RemoveFavorites/@ViewBag.Foods[0].FoodId" class="btn_1">Remove Favorites</a>
+                            </div>
+                            a = 1;
+                            break;
+                        }
+                    }
+
+                    if (a != 1)
+                    {
+                        <div>
+                            <a href="~/User/AddFavorites/@ViewBag.Foods[0].FoodId" class="btn_1">Add Favorites</a>
+                        </div>
+                    }
+                    
+                }
             </div>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
@@ -43,7 +72,7 @@
                 <h2 class="inner">@ViewBag.Foods[0].FoodName</h2>
                 <h3 class="nomargin_top" id="starters">Recipe</h3>
                 <p>
-                    @ViewBag.Foods[0].Recipe
+                    @Html.Raw(HttpUtility.HtmlDecode(ViewBag.Foods[0].Recipe));
                 </p>
                 <table class="table table-striped cart-list">
                     <thead>

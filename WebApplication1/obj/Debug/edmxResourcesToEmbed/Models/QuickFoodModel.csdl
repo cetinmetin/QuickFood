@@ -165,6 +165,7 @@
       <Parameter Name="mail" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="GetFavorites" EntityType="QuickFoodModel.GetFavorite" />
+    <EntitySet Name="GetRandomFoods" EntityType="QuickFoodModel.GetRandomFood" />
   </EntityContainer>
   <ComplexType Name="GetType_Result">
     <Property Type="Int32" Name="FoodId" Nullable="false" />
@@ -190,11 +191,28 @@
       <PropertyRef Name="UserId" />
       <PropertyRef Name="FavoriteId" />
       <PropertyRef Name="FoodId" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
     </Key>
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="FavoriteId" Type="Int32" Nullable="false" />
     <Property Name="FoodId" Type="Int32" Nullable="false" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recipe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GetRandomFood">
+    <Key>
+      <PropertyRef Name="FoodId" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Recipe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

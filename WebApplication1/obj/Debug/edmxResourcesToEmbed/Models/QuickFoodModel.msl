@@ -111,11 +111,25 @@
     <EntitySetMapping Name="GetFavorites">
       <EntityTypeMapping TypeName="QuickFoodModel.GetFavorite">
         <MappingFragment StoreEntitySet="GetFavorites">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="FoodName" ColumnName="FoodName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="FoodId" ColumnName="FoodId" />
           <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetRandomFoods">
+      <EntityTypeMapping TypeName="QuickFoodModel.GetRandomFood">
+        <MappingFragment StoreEntitySet="GetRandomFoods">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

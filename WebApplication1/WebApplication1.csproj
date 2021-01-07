@@ -168,6 +168,9 @@
     <Compile Include="Models\GetFavorite.cs">
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetRandomFood.cs">
+      <DependentUpon>QuickFoodModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetType_Result.cs">
       <DependentUpon>QuickFoodModel.tt</DependentUpon>
     </Compile>
@@ -644,6 +647,7 @@
     <Content Include="Views\Admin\AdminProfile.cshtml" />
     <Content Include="Views\Admin\ListFood.cshtml" />
     <Content Include="Views\Admin\CreateAdminUser.cshtml" />
+    <Content Include="Views\Profile\Favorites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

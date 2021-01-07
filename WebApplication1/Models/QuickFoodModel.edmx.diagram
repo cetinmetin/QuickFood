@@ -16,6 +16,7 @@
         <AssociationConnector Association="QuickFoodModel.FK_Favorites_Users" ManuallyRouted="false" />
         <AssociationConnector Association="QuickFoodModel.FK_Ingredients_Foods" ManuallyRouted="false" />
         <EntityTypeShape EntityType="QuickFoodModel.GetFavorite" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QuickFoodModel.GetRandomFood" Width="1.5" PointX="8.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

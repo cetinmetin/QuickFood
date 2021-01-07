@@ -35,6 +35,7 @@ namespace WebApplication1.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<GetFavorite> GetFavorites { get; set; }
+        public virtual DbSet<GetRandomFood> GetRandomFoods { get; set; }
     
         public virtual ObjectResult<GetType_Result> GetType(Nullable<int> type)
         {

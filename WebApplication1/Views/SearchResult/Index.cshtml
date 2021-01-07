@@ -1,6 +1,7 @@
 ﻿@using WebApplication1.Models
 @{ 
     QuickFoodEntities db = new QuickFoodEntities();
+    var text = "";
 }
 @model List<Food>
 @{
@@ -71,9 +72,7 @@
                                 <div class="category">
                                     @food.CategoryName
                                 </div>
-                                <div class="location">
-                                    @food.Recipe
-                                </div>
+                                <br />
                                 <ul>
                                     @{
                                         var Ingredients = db.Ingredients.SqlQuery("SELECT * FROM Ingredients WHERE FoodId=" + "'" + food.FoodId + "'");
@@ -89,7 +88,8 @@
                             <div class="go_to">
                                 <div>
                                     <a href="FoodDetail/Index/@food.FoodId" class="btn_1">View Recipe</a>
-                                </div>
+                                </div><br />
+                               
                             </div>
                         </div>
                     </div><!-- End row-->

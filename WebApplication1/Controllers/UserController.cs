@@ -50,12 +50,12 @@ namespace WebApplication1.Controllers
             if(isUser != null)
             {
                 FormsAuthentication.SetAuthCookie(username, false);
-                return RedirectToAction("Index","Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
             else
             {
                 TempData["ErrorMessage"] = "Hatali kullanici adi veya sifre";
-                return RedirectToAction("Index", "Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
 
            /* var model = GetUsers();
@@ -94,6 +94,27 @@ namespace WebApplication1.Controllers
             }
 
             return RedirectToAction("Index", "Profile");
+        }
+
+        public ActionResult AddFavorites(int id)
+        {
+            var userName = HttpContext.User.Identity.Name;
+            var user = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Username=" + "'" + userName + "'").FirstOrDefault();
+            Favorite f = new Favorite();
+            f.FoodId = id;
+            f.UserId = user.UserId;
+            db.Favorites.Add(f);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult RemoveFavorites(int id)
+        {
+            var userName = HttpContext.User.Identity.Name;
+            var user = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Username=" + "'" + userName + "'").FirstOrDefault();
+            var a = db.Database.SqlQuery<List<string>>("DELETE FROM Favorites WHERE FoodId =" + id + "and UserId =" + user.UserId).Any();
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         public ActionResult LogOut()

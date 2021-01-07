@@ -17,7 +17,10 @@ namespace WebApplication1.Models
         public int UserId { get; set; }
         public int FavoriteId { get; set; }
         public int FoodId { get; set; }
-        public string FirstName { get; set; }
         public string FoodName { get; set; }
+        public string Username { get; set; }
+        public string Recipe { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

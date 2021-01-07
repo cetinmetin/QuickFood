@@ -24,6 +24,7 @@ namespace WebApplication1.Controllers
             ViewBag.Category = categories;
             ViewBag.Nutritions = nutritions;
             ViewBag.Ingredients = ingredients;
+            ViewData["foodId"] = id;
             return View();
         }
 

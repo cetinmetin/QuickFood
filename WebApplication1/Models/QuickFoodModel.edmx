@@ -72,15 +72,34 @@
 warning 6002: The table/view 'QuickFood.dbo.GetFavorites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GetFavorites">
           <Key>
-            <PropertyRef Name="UserId" />
             <PropertyRef Name="FavoriteId" />
             <PropertyRef Name="FoodId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="FavoriteId" Type="int" Nullable="false" />
           <Property Name="FoodId" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="FoodName" Type="varchar" MaxLength="50" />
+          <Property Name="Recipe" Type="text" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QuickFood.dbo.GetRandomFoods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetRandomFoods">
+          <Key>
+            <PropertyRef Name="FoodId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
+          </Key>
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="FoodName" Type="varchar" MaxLength="50" />
+          <Property Name="Recipe" Type="text" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -174,12 +193,24 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GetFavorites" EntityType="Self.GetFavorites" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [GetFavorites].[UserId] AS [UserId], 
     [GetFavorites].[FavoriteId] AS [FavoriteId], 
     [GetFavorites].[FoodId] AS [FoodId], 
-    [GetFavorites].[FirstName] AS [FirstName], 
-    [GetFavorites].[FoodName] AS [FoodName]
+    [GetFavorites].[UserId] AS [UserId], 
+    [GetFavorites].[Username] AS [Username], 
+    [GetFavorites].[FoodName] AS [FoodName], 
+    [GetFavorites].[Recipe] AS [Recipe], 
+    [GetFavorites].[CategoryId] AS [CategoryId], 
+    [GetFavorites].[CategoryName] AS [CategoryName]
     FROM [dbo].[GetFavorites] AS [GetFavorites]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GetRandomFoods" EntityType="Self.GetRandomFoods" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetRandomFoods].[FoodId] AS [FoodId], 
+    [GetRandomFoods].[FoodName] AS [FoodName], 
+    [GetRandomFoods].[Recipe] AS [Recipe], 
+    [GetRandomFoods].[CategoryId] AS [CategoryId], 
+    [GetRandomFoods].[CategoryName] AS [CategoryName]
+    FROM [dbo].[GetRandomFoods] AS [GetRandomFoods]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Favorites_Foods" Association="Self.FK_Favorites_Foods">
             <End Role="Foods" EntitySet="Foods" />
@@ -363,6 +394,7 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
             <Parameter Name="mail" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="GetFavorites" EntityType="QuickFoodModel.GetFavorite" />
+          <EntitySet Name="GetRandomFoods" EntityType="QuickFoodModel.GetRandomFood" />
         </EntityContainer>
         <ComplexType Name="GetType_Result">
           <Property Type="Int32" Name="FoodId" Nullable="false" />
@@ -388,12 +420,29 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
             <PropertyRef Name="UserId" />
             <PropertyRef Name="FavoriteId" />
             <PropertyRef Name="FoodId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="FavoriteId" Type="Int32" Nullable="false" />
           <Property Name="FoodId" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recipe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GetRandomFood">
+          <Key>
+            <PropertyRef Name="FoodId" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="CategoryName" />
+          </Key>
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recipe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -511,11 +560,25 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
           <EntitySetMapping Name="GetFavorites">
             <EntityTypeMapping TypeName="QuickFoodModel.GetFavorite">
               <MappingFragment StoreEntitySet="GetFavorites">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="FoodName" ColumnName="FoodName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="FoodId" ColumnName="FoodId" />
                 <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetRandomFoods">
+            <EntityTypeMapping TypeName="QuickFoodModel.GetRandomFood">
+              <MappingFragment StoreEntitySet="GetRandomFoods">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

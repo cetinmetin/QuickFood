@@ -14,40 +14,11 @@ namespace WebApplication1.Controllers
             ViewBag.RegisterFail = TempData["RegisterFail"];
             ViewBag.IngredientError = TempData["IngredientError"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            QuickFoodEntities db = new QuickFoodEntities();
+            ViewBag.RandomFoods = db.Database.SqlQuery<GetRandomFood>("SELECT TOP 6 foodId,foodName, Recipe, CategoryId, CategoryName FROM GetRandomFoods ORDER BY NEWID()").ToList();
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Register(FormCollection form)
-        {
-            if (UserExist(form["userName"]))
-            {
-                return RedirectToAction("Index", "");
-            }
-            else { 
-                using (QuickFoodEntities db = new QuickFoodEntities())
-                {
-                    User model = new User();
-                    model.Username = form["userName"];
-                
-                    model.Password = form["password"];
-                    model.FirstName = form["firstName"];
-                    model.SurName = form["surname"];
-                    model.Mail = form["email"];
-
-                    db.Users.Add(model);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "");
-                }
-            }
-        }
-
-        public bool UserExist(string UserName)
-        {
-
-
-            return true;
-        }
 
     }
 }

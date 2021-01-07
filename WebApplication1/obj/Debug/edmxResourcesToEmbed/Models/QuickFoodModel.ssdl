@@ -67,15 +67,34 @@
 warning 6002: The table/view 'QuickFood.dbo.GetFavorites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="GetFavorites">
     <Key>
-      <PropertyRef Name="UserId" />
       <PropertyRef Name="FavoriteId" />
       <PropertyRef Name="FoodId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
     </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="FavoriteId" Type="int" Nullable="false" />
     <Property Name="FoodId" Type="int" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
     <Property Name="FoodName" Type="varchar" MaxLength="50" />
+    <Property Name="Recipe" Type="text" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuickFood.dbo.GetRandomFoods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetRandomFoods">
+    <Key>
+      <PropertyRef Name="FoodId" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="FoodId" Type="int" Nullable="false" />
+    <Property Name="FoodName" Type="varchar" MaxLength="50" />
+    <Property Name="Recipe" Type="text" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -169,12 +188,24 @@ warning 6013: The table/view 'QuickFood.dbo.IngredientsOfFoods' does not have a 
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GetFavorites" EntityType="Self.GetFavorites" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [GetFavorites].[UserId] AS [UserId], 
     [GetFavorites].[FavoriteId] AS [FavoriteId], 
     [GetFavorites].[FoodId] AS [FoodId], 
-    [GetFavorites].[FirstName] AS [FirstName], 
-    [GetFavorites].[FoodName] AS [FoodName]
+    [GetFavorites].[UserId] AS [UserId], 
+    [GetFavorites].[Username] AS [Username], 
+    [GetFavorites].[FoodName] AS [FoodName], 
+    [GetFavorites].[Recipe] AS [Recipe], 
+    [GetFavorites].[CategoryId] AS [CategoryId], 
+    [GetFavorites].[CategoryName] AS [CategoryName]
     FROM [dbo].[GetFavorites] AS [GetFavorites]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GetRandomFoods" EntityType="Self.GetRandomFoods" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetRandomFoods].[FoodId] AS [FoodId], 
+    [GetRandomFoods].[FoodName] AS [FoodName], 
+    [GetRandomFoods].[Recipe] AS [Recipe], 
+    [GetRandomFoods].[CategoryId] AS [CategoryId], 
+    [GetRandomFoods].[CategoryName] AS [CategoryName]
+    FROM [dbo].[GetRandomFoods] AS [GetRandomFoods]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Favorites_Foods" Association="Self.FK_Favorites_Foods">
       <End Role="Foods" EntitySet="Foods" />
